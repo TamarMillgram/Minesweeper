@@ -23,7 +23,7 @@ function onInit() {
     gBoard = buildBoard()
     console.log(gBoard)
     renderBoard(gBoard)
- 
+
 }
 
 function buildBoard() {
@@ -32,9 +32,9 @@ function buildBoard() {
         board[i] = []
         for (var j = 0; j < gLevel.SIZE; j++) {
             const cell = {
-                minesAroundCount:0,
+                minesAroundCount: 0,
                 isShown: false,
-                isMine: false,
+                isMine: false, //(Math.random() > 0.5) ? true : false, 
                 isMarked: false
             }
             board[i][j] = cell
@@ -42,7 +42,7 @@ function buildBoard() {
     }
     board[0][0].isMine = true
     board[3][3].isMine = true
-   
+
     findMinesNegsCount(board)
     return board
 }
@@ -52,13 +52,13 @@ function findMinesNegsCount(board) {
 
     for (var i = 0; i < board.length; i++) {
         for (var j = 0; j < board[0].length; j++) {
-            if (!board[i][j].isMine){
+            if (!board[i][j].isMine) {
                 var currCell = board[i][j]
-                currCell.minesAroundCount = setMinesNegsCount(i, j, board) 
+                currCell.minesAroundCount = setMinesNegsCount(i, j, board)
             }
         }
     }
-     return board
+    return board
 }
 
 
@@ -70,7 +70,7 @@ function setMinesNegsCount(rowIdx, colIdx, board) {
             if (i === rowIdx && j === colIdx) continue
             if (j < 0 || j >= board[0].length) continue
             var currCell = board[i][j];
-         if (currCell.isMine) minesAroundCount++
+            if (currCell.isMine) minesAroundCount++
         }
     }
     return minesAroundCount
@@ -84,28 +84,35 @@ function renderBoard() {
         for (var j = 0; j < gBoard[0].length; j++) {
             var cell = gBoard[i][j]
 
-            if(cell.isMine){
-                var className = 'mine'
-                cell = MINE
-            }else {
+            if (cell.isShown) {
+                var className = 'shown'
+                // cell = MINE
+            } else {
                 className = ''
-                cell = cell.minesAroundCount
-            
+                // cell = cell.minesAroundCount
+
             }
-            strHTML += `\t<td class="cell ${className} 
-                        onclick="cellClicked(this, ${i}, ${j})" > ${cell}
-                         </td>\n`
+            strHTML += `\t<td 
+                        class="cell ${className}" 
+                        onclick="onCellClicked(this, ${i}, ${j})"></td>\n`
         }
         strHTML += `</tr>\n`
     }
-    // console.log(strHTML)
+    //  console.log(strHTML)
 
     const elCell = document.querySelector('.board')
     elCell.innerHTML = strHTML
 }
 
-function cellClicked(elCell, i, j) {
-    const cell = gBoard[i][j]
-    if (cell.isMine || cell.isShown) return
-    console.log('Cell clicked: ', elCell, i, j)
+function onCellClicked(elCell, i, j) {
+    
+    var cell = gBoard[i][j];
+    if (cell.isMarked || cell.isShown) return;
+    cell.isShown = true;
+    if(cell.isShown && cell.isMine) {
+        elCell.innerText= MINE
+        elCell = 'mine'
+    } else if (cell.isShown && cell.minesAroundCount){
+        elCell.innerText=cell.minesAroundCount
+    }
 }
