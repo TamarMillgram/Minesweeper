@@ -82,12 +82,7 @@ function renderBoard() {
     for (var i = 0; i < gBoard.length; i++) {
         strHTML += `<tr>\n`
         for (var j = 0; j < gBoard[0].length; j++) {
-            var cell = gBoard[i][j]
-
-
-                var className = ''
-
-
+            var className = ''
             strHTML += `\t<td 
                         class="cell ${className}" 
                         onclick="onCellClicked(this, ${i}, ${j})"></td>\n`
@@ -105,10 +100,49 @@ function onCellClicked(elCell, i, j) {
     var cell = gBoard[i][j];
     if (cell.isMarked || cell.isShown) return;
     cell.isShown = true;
-    if(cell.isShown && cell.isMine) {
-        elCell.innerText= MINE
+    if (cell.isShown && cell.isMine) {
+        elCell.innerText = MINE
         elCell.className = 'mine'
-    } else if (cell.isShown && cell.minesAroundCount){
-        elCell.innerText=cell.minesAroundCount
+    } else if (cell.isShown && cell.minesAroundCount) {
+        elCell.innerText = cell.minesAroundCount
     }
 }
+
+
+function onRightClick(){
+    window.oncontextmenu = (ev) => {
+        ev.preventDefault()
+        elCell.innerHTML = FLAG
+    }
+}
+
+
+
+// function expandShown(board, elCell, i, j) {
+//     for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+//         if (i < 0 || i >= board.length) continue
+//         for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+//             if (i === rowIdx && j === colIdx) continue
+//             if (j < 0 || j >= board[0].length) continue
+//             var currCell = board[i][j];
+//             if (currCell === '') {
+//                 currCell.isShown = true
+//             }
+//         }
+//     }
+
+// }
+
+// function onCellMarked(elCell, i, j) {
+
+//     var cell = gBoard[i][j];
+
+//     if (elCell.innerHTML === '') {
+//         currCell.isMarked = true
+
+//     } else if (elCell.innerHTML === FLAG); currCell.isMarked = false
+// }
+
+
+// function checkGameOver() {
+// }
