@@ -1,0 +1,62 @@
+body {
+    background: white;
+    color: black;
+    text-align: center;
+
+}
+
+footer {
+    font-size: small;
+    position: fixed;
+    width: 20%;
+    bottom: 0%;
+}
+
+.board {
+    padding-top: 70%;
+    width: 400px;
+    height: 400px;
+    margin: auto;
+}
+
+table,
+td {
+    border: 1px solid black;
+    box-sizing: 20px;
+    border-width: 2px;
+    border-collapse: collapse;
+    background-color: rgb(182, 179, 179);
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    font-size: 1em;
+}
+
+
+.cell:hover{
+    background-color: rgb(196, 199, 199);
+    cursor: pointer;
+    
+}
+
+.mine {
+    background-color: rgb(242, 104, 104);
+}
+
+.shown {
+    background-color: rgb(203, 200, 200);
+}
+
+.restart img{
+    height: 30px;
+    cursor: pointer;
+}
+
+.restart{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+
