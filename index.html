@@ -10,12 +10,17 @@
     <link rel="icon" type="image/png" href="img/bomb.png"/>
 </head>
 
-<body onload="onInit()">
+<body onload="onInit(4,2)">
     <h1>Minesweeper</h1>
+    <div class="buttons">
+      <button class="Beginner" onclick="onInit(4,2)">Beginner</button>
+      <button class="medium" onclick="onInit(8,14)">Medium</button>
+      <button class="expert" onclick="onInit(12,32)">Expert</button>
+    </div>
      <button class="restart" onclick=""><img src="img/smiley.png" alt=""></button> 
     <table class="board">
       </table>
-      <footer> ⒸTamar Millgram</footer>
+      <footer>Tamar Millgram</footer>
     <script src="js/util.js"></script>
     <script src="js/main.js"></script>
 </body>

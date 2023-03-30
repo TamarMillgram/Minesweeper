@@ -9,7 +9,7 @@ var gGameInterval
 var gGame
 var gLevel
 
-function onInit() {
+function onInit(gameLevel, numsMines) {
     gGame = {
         isOn: false,
         shownCount: 0,
@@ -17,8 +17,8 @@ function onInit() {
         secsPassed: 0
     }
     gLevel = {
-        SIZE: 4,
-        MINES: 2
+        SIZE: gameLevel,
+        MINES: numsMines
     }
     gBoard = buildBoard()
     console.log(gBoard)
@@ -84,14 +84,10 @@ function renderBoard() {
         for (var j = 0; j < gBoard[0].length; j++) {
             var cell = gBoard[i][j]
 
-            if (cell.isShown) {
-                var className = 'shown'
-                // cell = MINE
-            } else {
-                className = ''
-                // cell = cell.minesAroundCount
 
-            }
+                var className = ''
+
+
             strHTML += `\t<td 
                         class="cell ${className}" 
                         onclick="onCellClicked(this, ${i}, ${j})"></td>\n`
@@ -105,13 +101,13 @@ function renderBoard() {
 }
 
 function onCellClicked(elCell, i, j) {
-    
+    elCell.className = 'shown'
     var cell = gBoard[i][j];
     if (cell.isMarked || cell.isShown) return;
     cell.isShown = true;
     if(cell.isShown && cell.isMine) {
         elCell.innerText= MINE
-        elCell = 'mine'
+        elCell.className = 'mine'
     } else if (cell.isShown && cell.minesAroundCount){
         elCell.innerText=cell.minesAroundCount
     }
