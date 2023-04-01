@@ -2,29 +2,37 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/main.css">
-    <title> Minesweeper</title>
-    <link rel="icon" type="image/png" href="img/bomb.png"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <title> Minesweeper</title>
+  <link rel="icon" type="image/png" href="img/bomb.png" />
 </head>
 
 <body onload="onInit(4,2)">
+  <div class="w3-container w3-teal">
     <h1>Minesweeper</h1>
     <div class="buttons">
       <button class="Beginner" onclick="onInit(4,2)">Beginner</button>
       <button class="medium" onclick="onInit(8,14)">Medium</button>
       <button class="expert" onclick="onInit(12,32)">Expert</button>
     </div>
-     <button class="restart" onclick="onInit(4,2)"><img src="img/smiley.png" alt=""></img></button> 
+    <button class="restart" onclick="onInit(4,2)"><img src="img/smiley.png" alt=""></img></button>
     <table class="board">
-      </table>
-      <div class="lives">❤️ ❤️ ❤️</div>
-      <!-- <div><button class="dark-mood" onclick="">Dark Mood</button></div> -->
-      <footer>Tamar Millgram</footer>
-    <script src="js/util.js"></script>
-    <script src="js/main.js"></script>
+    </table>
+    <div class="lives">❤️ ❤️ ❤️</div>
+    <div class="timer">
+      <label id="seconds">00</label><span class='bigger'>:</span><label id="miliseconds">000</label>
+    </div>
+  </div>
+  <!-- <div><button class="dark-mood" onclick="">Dark Mood</button></div> -->
+  <footer>Tamar Millgram</footer>
+  <script src="js/util.js"></script>
+  <script src="js/main.js"></script>
 </body>
 
 </html>

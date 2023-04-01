@@ -27,14 +27,23 @@ function getEmptyLocation(board) {
     return emptyLocations[randIdx]
 }
 function getRandomIntInclusive(min, max) {
-   var pos = Math.floor(Math.random() * (max - min + 1)) + min
+    var pos = Math.floor(Math.random() * (max - min + 1)) + min
     return pos
 }
-
-
 
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min+1) + min)
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+function setTimer(startTime) {
+    var elapsedTime = Date.now() - startTime
+    var elTimer = document.querySelector('.timer')
+    elTimer.innerText = (elapsedTime / 1000).toFixed(3)
+}
+
+function startTimer() {
+    var startTime = Date.now()
+    gGameInterval = setInterval(setTimer, 37, startTime)
 }
